@@ -5,3 +5,7 @@ module.exports.add = async name => {
   list.push({ title: name, done: false });
   await db.write(list);
 };
+
+module.exports.clear = async () => {
+  await db.write([]);
+};

@@ -17,3 +17,5 @@ program
   });
 
 program.parse(process.argv);
+
+console.log(process.argv);

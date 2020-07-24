@@ -2,7 +2,6 @@ const api = require("./index");
 
 const { program } = require("commander");
 
-program.option("-d, --debug", "output extra debugging");
 program
   .command("add")
   .description("add a task")
@@ -16,6 +15,11 @@ program
     api.clear();
   });
 
-program.parse(process.argv);
+program
+  .command("all")
+  .description("show all task")
+  .action((...args) => {
+    api.showAll();
+  });
 
-console.log(process.argv);
+program.parse(process.argv);

@@ -26,11 +26,17 @@ module.exports.showAll = async () => {
               name: `[${item.done ? "√" : "-"}] ${index + 1} ${item.title}`,
               value: index.toString()
             };
-          })
+          }),
+          { name: "+ 创建任务", value: "-2" }
         ]
       }
     ])
     .then(answers => {
-      console.log(JSON.stringify(answers));
+      const index = parseInt(answers.index);
+      if (index >= 0) {
+        // 选择的任务
+      } else if (index === -2) {
+        // 选择创建任务
+      }
     });
 };

@@ -70,14 +70,14 @@ module.exports.showAll = async () => {
         name: "index",
         message: "请选择你要操作的任务",
         choices: [
-          { name: "退出", value: "-1" },
           ...list.map((item, index) => {
             return {
               name: `[${item.done ? "√" : "-"}] ${index + 1} ${item.title}`,
               value: index.toString()
             };
           }),
-          { name: "+ 创建任务", value: "-2" }
+          { name: "+ 创建任务", value: "-2" },
+          { name: "退出", value: "-1" }
         ]
       }
     ])

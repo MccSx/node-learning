@@ -3,20 +3,36 @@ const _fs = jest.requireActual("fs");
 
 Object.assign(fs, _fs);
 
-const mocks = {};
+const readMocks = {};
+const writeMocks = {};
 
-fs.setMock = (path, error, data) => {
-  mocks[path] = [error, data];
+fs.setReadMock = (path, error, data) => {
+  readMocks[path] = [error, data];
+};
+
+fs.setWriteMock = (path, fn) => {
+  writeMocks[path] = fn;
 };
 
 fs.readFile = (path, option, callback) => {
   if (callback === undefined) {
     callback = option;
   }
-  if (path in mocks) {
-    callback(...mocks[path]);
+  if (path in readMocks) {
+    callback(...readMocks[path]);
   } else {
     _fs.readFile(path, option, callback);
+  }
+};
+
+fs.writeFile = (path, data, option, callback) => {
+  if (callback === undefined) {
+    callback = option;
+  }
+  if (path in writeMocks) {
+    writeMocks[path](path, data, option, callback);
+  } else {
+    _fs.writeFile(path, data, option, callback);
   }
 };
 

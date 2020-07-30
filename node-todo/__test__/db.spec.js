@@ -3,6 +3,9 @@ const fs = require("fs");
 jest.mock("fs");
 
 describe("db", () => {
+  afterEach(() => {
+    fs.clearMocks();
+  });
   it("can read", async () => {
     fs.setReadMock(
       "/aaa",

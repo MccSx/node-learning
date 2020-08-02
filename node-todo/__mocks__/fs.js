@@ -37,8 +37,8 @@ fs.writeFile = (path, data, option, callback) => {
 };
 
 fs.clearMocks = () => {
-  readMocks = {};
   writeMocks = {};
+  readMocks = {};
 };
 
 module.exports = fs;
